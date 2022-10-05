@@ -1,11 +1,12 @@
 const prompt = require('prompt-sync')({sigint: true});
-console.log('~Welcome to your personal To-Do list~');
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+console.log('Welcome to your personal To-Do list');
 console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
 console.log('\n~ Select an action ~');
-console.log('~ [1] Create a to-do item ~');
-console.log('~ [2] Complete a to-do item~');
-console.log('~ [3] Exit to-do List Application~');
+console.log('[1] Create a to-do item ');
+console.log('[2] Complete a to-do item');
+console.log('[3] Exit to-do List Application');
 
 
 let answer = Number(prompt('\n> '));
@@ -17,37 +18,35 @@ while(answer !== 3){
         console.log('~ Creating a new to-do item ~');
         console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
         console.log('What is this to-do item called?');
-        // add to do item
-        let addItem = prompt('> ');
-        while(addItem.length === 0){
+        
+        let addItem = prompt('> '); // adding to-do item
+        while(addItem.length === 0){ //if adding 'Nothing' it will be invalid
             console.log('~Invalid: Input cannot be empty.  Try again: ~')
             addItem = prompt('> ');
         }
-        toDoList.push(addItem);
-        statusArray.push(false);
-        displayList();
+        toDoList.push(addItem); // updating todolist with new item
+        statusArray.push(false); // adding incomplete to added items in your list
+        displayList(); //function that shows your updated list
 
         // reprompt the user
          selectAnswer();
     } else if(answer === 2){
 
-        if(toDoList.length !== 0){
+        if(toDoList.length !== 0){ //if you have items in list continue to run code.
             
-
         console.log('\n~ Completing a to-do item ~');
         console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
         console.log('Which to-do item would you like to complete?');
         
-        let newStatus = Number(prompt('> '));
-        // console.log("newStatus check: " + newStatus);
-        // console.log("type check: " + newStatus)
+        let newStatus = Number(prompt('> ')); // User's response 1 2 3
+        
          while(isNaN(newStatus) || newStatus > statusArray.length|| newStatus < 1){
-            
+            //new status is NaN    // entering a num that's not on list.
             console.log("Please input a number that corresponds to an item in the list: ")
             newStatus = (Number(prompt("> ")))
          }
         
-        statusArray[newStatus-1] = true;
+        statusArray[newStatus-1] = true; //updated status with completed items
         } else {
             console.log("Please add an something to your to-do list.")
         }
